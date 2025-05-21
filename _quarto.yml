@@ -3,10 +3,11 @@ project:
   output-dir: docs
 
 website:
-  title: "Personal Website"
+  title: "David Lloyd George"
   navbar:
-    right:
+    left: 
       - about.qmd
+    right:
       - icon: github
         href: https://github.com/dlloydgeorge
 format:
