@@ -1,6 +1,7 @@
 ---
 title: "About"
 image: muscleupprofile.JPG
+image-height: "7000"
 about:
   template: jolla
   links:
