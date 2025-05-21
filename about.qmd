@@ -1,7 +1,7 @@
 ---
 title: "About"
 image: muscleupprofile.JPG
-image-height: "7000"
+image-height: "30em"
 about:
   template: jolla
   links:
@@ -14,4 +14,4 @@ about:
 
 ---
 
-About this blog
+I am a physics PhD student at Duke University studying quantum algorithms and quantum computing. 
