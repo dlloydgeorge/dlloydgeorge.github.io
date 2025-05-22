@@ -1,0 +1,10 @@
+---
+title: "Projects"
+listing: 
+    contents: projects
+    sort: "date desc"
+    type: default
+    categories: true
+---
+
+Here are some past projects I've worked on (Site still in progress)

@@ -13,5 +13,8 @@
   },
   "projects.qmd": {
     "projects.html": "8c80f2a2"
+  },
+  "projects/index.qmd": {
+    "index.html": "e3dbed5f"
   }
 }

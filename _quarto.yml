@@ -6,11 +6,18 @@ website:
   title: "David Lloyd George"
   navbar:
     left: 
-      - about.qmd
-      - projects.qmd
+      - href: about.qmd
+        text: About
+      - href: projects/index.qmd
+        text: Projects
     right:
       - icon: github
         href: https://github.com/dlloydgeorge
+
+collections:
+  projects: 
+    categories: true
+
 format:
   html:
     theme:
