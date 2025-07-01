@@ -4,7 +4,9 @@
       "posts"
     ],
     "projects\\index.qmd": [
-      "posts"
+      "CryptoMiningRig",
+      "StoneBowl",
+      "FusionReactor"
     ]
   }
 }

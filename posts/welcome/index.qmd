@@ -1,11 +1,11 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
-date: "2025-05-17"
+title: "Welcome To My Website"
+author: "David Lloyd George"
+date: "2025-07-02"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+This is the first post in a my website. Welcome!
 
 ![](thumbnail.jpg)
 

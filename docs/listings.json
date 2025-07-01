@@ -8,6 +8,10 @@
   },
   {
     "listing": "/projects/index.html",
-    "items": []
+    "items": [
+      "/projects/CryptoMiningRig/index.html",
+      "/projects/StoneBowl/index.html",
+      "/projects/FusionReactor/index.html"
+    ]
   }
 ]

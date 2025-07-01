@@ -1,4 +1,5 @@
 ---
 title: IEC Fusion Reactor
-description: Built a prototype IEC fusion reactor and achieved an air plasma
+description: Built a prototype IEC fusion reactor and achieved an air plasma 
+image: "plasmaphoto.jpg"
 ---

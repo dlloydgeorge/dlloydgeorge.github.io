@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "projects/StoneBowl/index.html",
+    "href": "projects/StoneBowl/index.html",
+    "title": "Stone Bowl",
+    "section": "",
+    "text": "During my internship at Atom Computing in Boulder, I had the idea that it would be cool to turn a rock into a sink. This idea kept sticking with me and before my internship ended, I drove into the mountains near Boulder, hiked to a river nearby the road, and iteratively carried on the order of 200 pounds worth of stones back to my truck.\n After driving back to Georgia Tech with the stones, I chose the largest one of them and began carving/cutting the basin out. I drew an approximate perimeter of the basin with chalk and proceeded to use a large 6” angle grinder with a diamond cutting wheel to cut a grid into the stone. I then used a hammer and chisel to break off the rectangular chunks in the grid. I repeated this process until I had the approximate shape of the bowl I desired. During this process I also used this process on the underside of the rock to creat a flat base for the rock basin.\n\n\n\nGrid Pattern for a Stone Bowl. NOTE: this was from a different bowl that I carved\n\n\n   Once I had the approximate shape, I went inwth the hammer and chisel to knock off any large stone segements that were jutting out from the basin. I then went in with a smaller angle grinder with a concrete smoothing disk to get a roughly smooth basin. This was followed by another finer smoothing disk on the angle grinder to get an even smoother surface of the basin and remove any divots before the final sanding. I then used a drill with a sanding wheel attachments and stone sanding/polishing disks (starting with 80 grit and went up to 1500). The final basin had an incredibly smooth finish."
+  },
+  {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
     "title": "Welcome To My Blog",
@@ -32,13 +39,13 @@
     "href": "projects/CryptoMiningRig/index.html",
     "title": "Dorm Room Ethereum Mining Rig",
     "section": "",
-    "text": "As the crypto wave of 2021 was taking off, I decided to build a crypto mining rig in my dorm to mine Ethereum. I used 6 AMD 5700 XT GPUs, an Intel Celeron CPU, and a Biostar 250motherboard. This resulted in a machine with about 312MHs. I ran a version of Linux called HiveOS on the machine. I undervolted the GPUs to save power and was able to draw about 600W in total from all 5 GPUs while maintaining my hashrate. It did still make for a rather colorful space heater in my dorm room with the RGB fans and lights from the GPUs."
+    "text": "As the crypto wave of 2021 was taking off, I decided to build a crypto mining rig in my dorm room to mine Ethereum. I used 6 AMD 5700 XT GPUs, an Intel Celeron CPU, and a Biostar 250motherboard. This resulted in a machine with about 312MHs. I ran a version of Linux called HiveOS on the machine. I undervolted the GPUs to save power and was able to draw about 600W in total from all 5 GPUs while maintaining my hashrate. It did still make for a rather colorful space heater in my dorm room with the RGB fans and lights from the GPUs."
   },
   {
     "objectID": "projects/index.html",
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "Here are some past projects I’ve worked on (Site still in progress)\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Here are some past projects I’ve worked on (Site still in progress)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDorm Room Ethereum Mining Rig\n\n\nBuilt an Ethereum Mining Rig in my Dorm Room\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStone Bowl\n\n\nCarved a stone bowl/basin from a large rock I hiked up from a river in the mountains of Colorado\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIEC Fusion Reactor\n\n\nBuilt a prototype IEC fusion reactor and achieved an air plasma\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
