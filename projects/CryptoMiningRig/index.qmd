@@ -1,0 +1,4 @@
+---
+title: Dorm Room Ethereum Mining Rig
+description: Built an Ethereum Mining Rig in my Dorm Room
+---

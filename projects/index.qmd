@@ -5,6 +5,8 @@ listing:
     sort: "date desc"
     type: default
     categories: true
+    sort-ui: false
+    filter-ui: false
 ---
 
 Here are some past projects I've worked on (Site still in progress)
