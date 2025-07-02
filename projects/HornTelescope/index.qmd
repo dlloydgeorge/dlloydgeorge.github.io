@@ -1,0 +1,8 @@
+---
+title: "Horn Radio Telescope"
+description: "Built a Horn Antenna to detect the 1.42GHz Hydrogen line"
+image: "horntelescope.jpg"
+---
+
+
+During my Senior year of high school I did an independent study in physics. The first semester of this I chose to study Astrophysics with me deciding that my final project would be to construct a radio telescope to observe the hydrogen line of the Milky Way galaxy and subsequently measure its rotation. (Will add more details when I find the paper I wrote on this)

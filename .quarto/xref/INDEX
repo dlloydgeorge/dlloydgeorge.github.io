@@ -25,5 +25,11 @@
   },
   "projects/StoneBowl/index.qmd": {
     "index.html": "f7f06bfd"
+  },
+  "projects/HornTelescope/index.qmd": {
+    "index.html": "241dd00a"
+  },
+  "projects/MotorBike/index.qmd": {
+    "index.html": "e399eddf"
   }
 }

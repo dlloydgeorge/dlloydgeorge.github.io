@@ -5,6 +5,8 @@ listing:
         - CryptoMiningRig
         - StoneBowl
         - FusionReactor
+        - MotorBike
+        - HornTelescope
     sort: "date desc"
     type: grid
     categories: true
