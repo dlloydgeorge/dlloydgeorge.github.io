@@ -7,18 +7,25 @@
     "text": "During my internship at Atom Computing in Boulder, I had the idea that it would be cool to turn a rock into a sink. This idea kept sticking with me and before my internship ended, I drove into the mountains near Boulder, hiked to a river nearby the road, and iteratively carried on the order of 200 pounds worth of stones back to my truck.\n After driving back to Georgia Tech with the stones, I chose the largest one of them and began carving/cutting the basin out. I drew an approximate perimeter of the basin with chalk and proceeded to use a large 6” angle grinder with a diamond cutting wheel to cut a grid into the stone. I then used a hammer and chisel to break off the rectangular chunks in the grid. I repeated this process until I had the approximate shape of the bowl I desired. During this process I also used this process on the underside of the rock to creat a flat base for the rock basin.\n\n\n\nGrid Pattern for a Stone Bowl. NOTE: this was from a different bowl that I carved\n\n\n   Once I had the approximate shape, I went inwth the hammer and chisel to knock off any large stone segements that were jutting out from the basin. I then went in with a smaller angle grinder with a concrete smoothing disk to get a roughly smooth basin. This was followed by another finer smoothing disk on the angle grinder to get an even smoother surface of the basin and remove any divots before the final sanding. I then used a drill with a sanding wheel attachments and stone sanding/polishing disks (starting with 80 grit and went up to 1500). The final basin had an incredibly smooth finish."
   },
   {
+    "objectID": "projects/FusionReactor/index.html",
+    "href": "projects/FusionReactor/index.html",
+    "title": "IEC Fusion Reactor",
+    "section": "",
+    "text": "During the Spring of 2017 I embarked on a quest try and build a small inertial electrostatic confinement fusion reactor device with a close friend from Florida. This was a multi year and multi dimensional project that required learning lots of new skills such as high vaccuum engineering, high voltage electronics design, neutron detector design. Given that we were on a budget, many of the requisite parts were sourced from eBay or other second hand sources. Here are some of the photos of the set up and air plasma photos we got:\n The working principal of an IEC fusion reactor is that an electrically isolated metal grid inside a metal vacuum chamber is charged with a very large (typically 10s of kilovolts)negative voltage while keeping the metal vacuum chamber grounded. This voltage difference produces a large electric field which ionizes gas molecules in the chamber. These positively charged ions then accelerate towards the grid and collide, creating a plasma. If deuterium gas is admitted into the chamber with the right voltages and vacuums maintained, some of the ionized deuterium will fuse, producing neutrons. These neutrons escape the vacuum chamber and can be measured with a neutron detector, confirming that fusion is taking place.\n\n\n\n\nXray transformer and HDPE frame used for generating a high voltage for the grid of the reactor. This whole frame was kept in mineral oil to prevent coils arcing over.\n\n\n\n\n\nFull experimental set up used for vacuum testing and generating an air plasma in the chamber.\n\n\n\n \n\nResultant air plasma photos generated after pulling a vacuum (100mTorr) and applying -10kV on the grid"
+  },
+  {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "title": "Welcome To My Website",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "This is the first post in a my website. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "David Lloyd George",
     "section": "",
-    "text": "Post With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 20, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMay 17, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Welcome To My Website\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJul 2, 2025\n\n\nDavid Lloyd George\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 20, 2025\n\n\nHarlow Malloc\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
