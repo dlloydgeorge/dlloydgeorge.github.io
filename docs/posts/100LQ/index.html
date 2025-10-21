@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -164,8 +193,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Atom Computing isn’t the only entity making significant progress in neutral atom QC, QuEra currently has a 260 qubit processor and the Lukin group at Harvard has been performing incredible experiments with a 256-300 qubit system. While one might compare this to IBM’s recent announcements of 1121 qubits and think that the two modalities are on a similar footing scalability wise, the beauty of the neutral atom platform is that the tweezer traps are entirely defined optically and therefore no significant changes to the architecture or engineering have to be made to scale up by another factor of 10. All one needs is a bigger light pattern (somewhat similar to a lithography pattern for IC fabrication). In fact, work from Manuel Endres’ group at Caltech has coherently trapped 6100 atoms in a single array! This was in a system that had 12,000 tweezer sites! Thus it stands to reason that within the next few years improvements in optical control and trap lifetimes will result in a neutral atom quantum computing system with 10,000 usable qubits.</p>
 <p>Now that I’ve talked about getting ~10,000 physical qubits in one place it’s time to discuss the next big challenge, quantum error correction. To make a proper logical qubit you need to encode using some error correction code and do so below threshold. This means that the underlying gate errors for your system are below a certain value. Below this error threshold the threshold theorem kicks in and you get exponential suppression (ideally) of your logical qubit error and therefore a reliable logical qubit. Put a lot of these together and you have a fault tolerant quantum computer.</p>
 <p>QEC was initially formalized using basic concatenated small codes such as the repetition code to demonstrate the possibility of fault tolerance. These small codes however did not have a particularly high threshold and therefore would be difficult to realize practically. Alexei Kitaev and others then introduced topologically based codes such as the toric and surface code in the late 90s and early 2000s with error thresholds of ~1%. The surface code has since become the de facto standard QEC code used when considering novel quantum computing architectures and resource estimates. The surface code is a remarkably robust code however it has an unfortunate issue. The number of physical qubits needed for a given logical qubit to have a distance d (how many errors you can correct) scales by the square of the distance. Thus to have a surface code with distance d=10, you need 100 physical qubits (not including those required for measurements. This is an issue if we want to create a ~100 logical qubit quantum computer with our 10,000 physical qubits because for a d=10 surface code we need 200 physical qubits when including our measurement ones. Thus we can ‘only’ create 50 logical qubits with this code.</p>
-<p>To solve this, we can reduce the distance and therefore size of our code so that we can encode more logical qubits. This would be nice however we want to ensure that our logical error probability is low enough for the depth of quantum circuits that we intend to run. For the smallest quantum circuits that would do a useful task of some kind this is typically 10^6 operations which implies that our logical error probability needs to be 10^-6. Using the formula $p_L = (p_err/ p_th)^((d+1)/2) with p_err = .001 (typical goal for a 2qubit gate fidelity) and p_th = .01 we have that a distance 10 surface code yields a logical error probability of ~3*10^-6. Close enough. Thus we can’t reduce the distance of our code.</p>
-<p>The other strategy is to use other QECCs with higher encoding rates, more logical qubits encoded per code block. There has been extensive research in recent years into new QECCs with higher encoding rates with Quantum Low Density Parity Check codes (QLDPC) being the dominant class of codes that has been explored. As a comparison, let’s choose one of these QLDPC codes that has gained significant attention, the Gross Code. This is a [[144, 12,12]] code which means it uses 144 physical qubits to encode 12 logical qubits with distance 12. If we use this code instead of the surface code to create our logical qubits we can create 833 logical qubits with our 10,000 physical qubits with the same logical error rate of 3*10^-6. Thus we have vastly increased our number of logical qubits while maintaining our logical error rates. Note that these QLDPC codes typically require nonlocal measurements between distant qubits.</p>
+<p>To solve this, we can reduce the distance and therefore size of our code so that we can encode more logical qubits. This would be nice however we want to ensure that our logical error probability is low enough for the depth of quantum circuits that we intend to run. For the smallest quantum circuits that would do a useful task of some kind this is typically 10^6 operations which implies that our logical error probability needs to be 10^-6. Using the formula <span class="math inline">\(p_L = (p_{err}/ p_{th})^((d+1)/2)\)</span> with <span class="math inline">\(p_{err} = .001\)</span> (typical goal for a 2qubit gate fidelity) and <span class="math inline">\(p_{th} = .01\)</span> we have that a distance 10 surface code yields a logical error probability of <span class="math inline">\(\approx 3*10^{-6}\)</span>. Close enough. Thus we can’t reduce the distance of our code.</p>
+<p>The other strategy is to use other QECCs with higher encoding rates, more logical qubits encoded per code block. There has been extensive research in recent years into new QECCs with higher encoding rates with Quantum Low Density Parity Check codes (QLDPC) being the dominant class of codes that has been explored. As a comparison, let’s choose one of these QLDPC codes that has gained significant attention, the Gross Code. This is a [[144, 12,12]] code which means it uses 144 physical qubits to encode 12 logical qubits with distance 12. If we use this code instead of the surface code to create our logical qubits we can create 833 logical qubits with our 10,000 physical qubits with the same logical error rate of <span class="math inline">\(p_L \approx 3*10^{-6}\)</span>. Thus we have vastly increased our number of logical qubits while maintaining our logical error rates. Note that these QLDPC codes typically require nonlocal measurements between distant qubits.</p>
 <p>So now that we have our quantum computer with &gt; 100 logical qubits we can start to figure out what to do with them. One of the most commonly cited applications of quantum computers is to simulate other quantum systems. That is, we use it to predict the properties and dynamics of systems at the quantum level. Such quantum systems include individual molecules, crystal lattices, spin chains, etc. Simulating quantum systems can typically be broken down into two types of simulations. Those that predict static properties of a system, such as its ground state energy, and those that predict dynamic properties of a system, such as how it evolves in time. Currently, it is far easier to get a quantum advantage predicting dynamics properties of a quantum system. One interesting example is predicting the charge dynamics within an organic photovoltaic molecule. This would be very useful for designing new solar panel materials with higher efficiency. Estimates on gate counts and logical qubits to perform this task have been made in a paper by Xanadu and at the lower level stand at 112 logical qubits with ~662,000 Toffoli Gates (This does push past our logical error threshold).</p>
 
 
