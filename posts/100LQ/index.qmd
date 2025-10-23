@@ -7,7 +7,9 @@ categories: [quantum computing]
 image: "6100AtomsNAImage.png"
 ---
 
-![Neutral Atom Array Containing 6100 atoms. Taken from ](6100AtomsNAImage.png)
+![Neutral Atom Array Containing 6100 atoms. Taken from [@manetsch_tweezer_2025]](6100AtomsNAImage.png)
+
+
 Since I started working in Quantum Computing, I’ve asked one question in particular to many of my colleagues who work in the field. I ask it not only to judge how people are thinking about the future of their field, but also to ascertain how they think quantum computers are going to develop. “Where do you see Quantum Computing in 10 years?” 
 
 Remarkably, many of the answers I get are “I don’t know”. A perfectly reasonable answer from physicists, who more often focus on the immediate problem to be solved rather than think about the long term direction of their field. However, given that billions of dollars of investment has been poured into this field, and there is a large amount of hype surrounding it, I thought it would be a good idea to give my own opinion as a quantum physicist in training and as someone who obsessively follows the developments in this field. 
@@ -32,4 +34,4 @@ The other strategy is to use other QECCs with higher encoding rates, more logica
 
 So now that we have our quantum computer with > 100 logical qubits we can start to figure out what to do with them. One of the most commonly cited applications of quantum computers is to simulate other quantum systems. That is, we use it to predict the properties and dynamics of systems at the quantum level. Such quantum systems include individual molecules, crystal lattices, spin chains, etc. Simulating quantum systems can typically be broken down into two types of simulations. Those that predict static properties of a system, such as its ground state energy, and those that predict dynamic properties of a system, such as how it evolves in time. Currently, it is far easier to get a quantum advantage predicting dynamics properties of a quantum system. One interesting example is predicting the charge dynamics within an organic photovoltaic molecule. This would be very useful for designing new solar panel materials with higher efficiency.  Estimates on gate counts and logical qubits to perform this task have been made in a paper by Xanadu and at the lower level stand at 112 logical qubits with ~662,000 Toffoli Gates (This does push past our logical error threshold)[@motlagh_quantum_2025].
 
-The hardware, error correction, and application developments all strongly indicate that we will have early fault tolerant quantum computers capable of performing useful computational workloads by 2030. 
+So to answer my own question, I believe that in 10 years we will have versions of fault tolerant quantum computers with >100 logical qubits. These quantum computers will have low enough logical error rates that will allow them to perform classically intractable calculations that will be useful. The hardware developments in neutral atoms, new error correcting code developments, and application developments all indicate that we will be able to achieve quantum advantage even sooner than 2035. My personal guess is that quantum advantage with error corrected applications will be achieved by 2030. It is an exciting time to be working in the field of quantum computing!
