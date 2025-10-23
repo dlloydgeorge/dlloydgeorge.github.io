@@ -4,9 +4,7 @@ description: "Built an Ethereum Mining Rig in my Dorm Room"
 image: "miningrigphoto.jpg"
 ---
 
-<figure>
-    <img src="MiningRig.jpg">
-    <figcaption>Original mining rig set up with all 6 GPUs<figcaption>
-</figure>
+
+![Original mining rig set up with all 6 GPUs](MiningRig.jpg)
 
 As the crypto wave of 2021 was taking off, I decided to build a crypto mining rig in my dorm room to mine Ethereum. I used 6 AMD 5700 XT GPUs, an Intel Celeron CPU, and a Biostar 250motherboard. This resulted in a machine with about 312MHs. I ran a version of Linux called HiveOS on the machine. I undervolted the GPUs to save power and was able to draw about 600W in total from all 5 GPUs while maintaining my hashrate. It did still make for a rather colorful space heater in my dorm room with the RGB fans and lights from the GPUs. 

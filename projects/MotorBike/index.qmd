@@ -4,10 +4,8 @@ description: "Turned a chopper style bicycle into a mini motorcycle"
 image: "MotorbikeImage.jpg"
 ---
 
-<figure>
-    <img src="MotorbikeImage.jpg">
-    <figcaption>My first motorized bike project built with a 2 stroke engine kit and some custom hardware for a<figcaption>
-</figure>
+
+![My first motorized bike project built with a 2 stroke engine kit and some custom hardware for mounting the engine to the frame. ](MotorbikeImage.jpg)
 
 2 stroke engine kits are a really fun way to motorize any bicycle and have a fun quasi motorcycle like experience riding around if done properly. Given their simple nature they also allow for a lot of experimentation and upgrading and are quite cheap and modular. I built several of these bikes over the course of my undergrad years and even used them as commuter vehicles when I was near enough to campus. 
 
