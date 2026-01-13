@@ -1,0 +1,166 @@
+---
+title: "Photonic Ring Resonator Simulation" 
+description: "Simulated a Silicon Nitride waveguide cross section for use in a full 3D simulation of a ring resonator geometry"
+jupyter: python3
+---
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import tidy3d as td
+import gdstk
+import tidy3d.web as web
+from tidy3d.plugins import waveguide
+web.configure(apikey="insert api key")
+```
+
+I'll start by using the two strip waveguide design given in \href<> by TriPlex. We can do a basic visualization of this using the imported cross section GDS file:
+
+```{python}
+# t_b = 75 #nm
+# t_t = 175 #nm
+# gap = 100 #nm
+# width = 1100 #nm
+# alpha = 82 #deg
+lambda_0 = 1.550 #um
+n_sio2 = 1.45 #taken from TriPlex paper
+n_sin = 1.98 ##taken from TriPlex paper
+
+gds_path = "ADS_Cross_section.gds"
+
+# Load a GDSII library from the file previously created
+lib_loaded = gdstk.read_gds(gds_path)
+
+# Create a cell dictionary with all the cells in the file
+all_cells = {c.name: c for c in lib_loaded.cells}
+
+print("Cell names: " + ", ".join(all_cells.keys()))
+```
+
+```{python}
+two_strip_loaded = all_cells["Unnamed_17"]
+
+thickness = 10.0
+SiN = td.material_library["Si3N4"]
+
+medium_si3n4= td.Medium(permittivity=1.98**2) #SiO2 permittivity
+structures = []
+fig, ax = plt.subplots()
+ax.grid()
+
+for poly in two_strip_loaded.get_polygons():
+    print(poly)
+    #geom = td.PolySlab(poly, axis= 2, slab_bounds= (-thickness/2, thickness/2))
+    geom = td.Geometry.from_gds(gds_cell= two_strip_loaded, axis= 2, slab_bounds=(-thickness/2, thickness/2), gds_layer=1)
+    geom.plot(z=0.0, ax=ax)
+    structures.append(td.Structure(geometry=geom, medium= medium_si3n4))
+
+ax.set_xlabel("x ($\mu$m)")
+ax.set_ylabel("y ($\mu$m)")
+```
+
+```{python}
+#now we construct the simulation
+
+sim= td.Simulation(center= (0,0,0), size=(2,1, thickness+2), grid_spec= td.GridSpec.auto(wavelength=1.55),structures=structures, medium= td.Medium(permittivity=1.45**2), boundary_spec=td.BoundarySpec.all_sides(td.PML()), run_time= 5e-12)
+
+#sim_source = td.ModeSource(center=(0,0,-thickness/2 + 0.25), size=(4,4,0), direction="+", mode_spec=td.ModeSpec(num_modes=1), wavelength=1.55)
+
+#sim.sources = sim_source
+
+monitor = td.FieldMonitor(
+    center=(0,0, thickness/2 - 0.5),
+    size=(4, 4, 0),
+    freqs=[td.C_0 / 1.55],
+    name="fields",
+)
+#sim.monitors = [monitor]
+
+fig, (ax1, ax2) = plt.subplots(ncols=2, figsize= (10,5), layout= "constrained")
+
+sim.plot(z=0, ax=ax1)
+sim.plot(x=0, ax=ax2)
+plt.show()
+```
+
+```{python}
+#Lets compute the modes
+from tidy3d.components.mode.simulation import ModeSolver
+lambda_offset = .001 * lambda_0
+freqs = np.round(np.divide(td.constants.C_0, np.linspace(lambda_0 - lambda_offset, lambda_0 + lambda_offset, 11)), 5)
+mode_spec = td.ModeSpec(num_modes=1)
+mode_solver = ModeSolver(simulation=sim, plane=td.Box(center=(0,0,0), size= (1.5,2, 0)), mode_spec=mode_spec, freqs= freqs)
+mode_data=mode_solver.solve()
+```
+
+```{python}
+from pandas import DataFrame
+mdd = mode_data.to_dataframe()
+fig, ax = plt.subplots(ncols=2, layout= "constrained")
+mode_solver.plot_field("Ex", "abs", mode_index=0, f=td.constants.C_0/lambda_0, ax=ax[0], eps_alpha= .4)
+n_eff = mode_data.n_eff 
+n_eff.plot.scatter(x='f')
+# fig, ax = plt.subplots()
+# abs(mode_data.Ex.isel(mode_index=0, f=5)).plot(x="x", y="y", ax=ax, cmap='magma')
+```
+
+
+```{python}
+#We now add in nonlinearity
+#ensure any length units are in um
+#chi^3 for Si3N4
+n2_sin = 2.4e-7 # 2.4e-7 um^2/W taken from entangled source paper
+chi3_sin = 4 * (n_sin**2) * td.constants.EPSILON_0 * td.constants.C_0 * n2_sin / 3
+print(chi3_sin)
+chi3_model_sin = td.NonlinearSpec(models=[td.NonlinearSusceptibility(chi3=chi3_sin)], num_iters=10)
+kerr_medium_sin = td.Medium(permittivity=n_sin**2, nonlinear_spec=chi3_model_sin)
+
+structures_nl = []
+for poly in two_strip_loaded.get_polygons():
+    print(poly)
+    #geom = td.PolySlab(poly, axis= 2, slab_bounds= (-thickness/2, thickness/2))
+    geom_nl = td.Geometry.from_gds(gds_cell= two_strip_loaded, axis= 2, slab_bounds=(-thickness/2, thickness/2), gds_layer=1)
+    structures_nl.append(td.Structure(geometry=geom_nl, medium= kerr_medium_sin))
+
+
+sim_nl= td.Simulation(center= (0,0,0), size=(2,1, thickness+2), grid_spec= td.GridSpec.auto(wavelength=1.55),structures=structures_nl, medium= td.Medium(permittivity=1.45**2), boundary_spec=td.BoundarySpec.all_sides(td.PML()), run_time= 5e-12)
+
+#sim_source = td.ModeSource(center=(0,0,-thickness/2 + 0.25), size=(4,4,0), direction="+", mode_spec=td.ModeSpec(num_modes=1), wavelength=1.55)
+
+#sim.sources = sim_source
+
+fig, (ax1, ax2) = plt.subplots(ncols=2, figsize= (10,5), layout= "constrained")
+
+sim_nl.plot(z=0, ax=ax1)
+sim_nl.plot(x=0, ax=ax2)
+plt.show()
+```
+
+```{python}
+from tidy3d.components.mode.simulation import ModeSolver
+lambda_offset_nl = .001 * lambda_0
+freqs_nl = np.round(np.divide(td.constants.C_0, np.linspace(lambda_0 - lambda_offset_nl, lambda_0 + lambda_offset_nl, 11)), 5)
+mode_spec_nl = td.ModeSpec(num_modes=1)
+mode_solver_nl = ModeSolver(simulation=sim_nl, plane=td.Box(center=(0,0,0), size= (1.5,2, 0)), mode_spec=mode_spec_nl, freqs= freqs_nl)
+mode_data_nl=mode_solver_nl.solve()
+```
+
+```{python}
+from pandas import DataFrame
+
+fig, ax = plt.subplots()
+mode_solver_nl.plot_field("Ex", "abs", mode_index=0, f=td.constants.C_0/lambda_0, ax=ax, eps_alpha= .4)
+```
+
+```{python}
+fig, axs= plt.subplots(ncols=2, layout="constrained")
+axs[0].grid(), axs[1].grid()
+n_eff_nl = mode_data_nl.n_eff
+print(n_eff_nl)
+print(freqs_nl)
+n_eff.plot.scatter(x='f', ax=axs[0])
+n_eff_nl.plot.scatter(x='f', ax=axs[1])
+axs[0].set_title("Computed Mode Effective Index")
+axs[1].set_title("Computed Mode Effective Index (With $\chi^{(3)}$)")
+```
+
