@@ -209,7 +209,7 @@ window.Quarto = {
 
 
 <p>I used GDSFactory and Tidy3D to design and simulate a complex 3D photonic ring resonator geometry used in an entangled frequency source photonic chip. I simulated a silicon nitride waveguide cross section called the Triplex Waveguide which is an asymmetric double strip waveguide. I was able to compute the single mode profile at 1.55 <span class="math inline">\(\mu\)</span>m and also created the 2D ring resonator design. I ran into issues with tidy3d/GDSFactory as I was not able to extrude the waveguide cross section along the complex ring resonator geometry. There were also issues with the number of simulation credits I would require for a full ring simulation with high accuracy.</p>
-<div id="5a65ab53" class="cell">
+<div id="a802c362" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tidy3d <span class="im">as</span> td</span>
@@ -219,7 +219,7 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>web.configure(apikey<span class="op">=</span><span class="st">"insert api key"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>I’ll start by using the two strip waveguide design given in \href&lt;&gt; by TriPlex. We can do a basic visualization of this using the imported cross section GDS file:</p>
-<div id="143bcd91" class="cell">
+<div id="b07f0dba" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t_b = 75 #nm</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># t_t = 175 #nm</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># gap = 100 #nm</span></span>
@@ -239,7 +239,7 @@ window.Quarto = {
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cell names: "</span> <span class="op">+</span> <span class="st">", "</span>.join(all_cells.keys()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="77d9f1ff" class="cell">
+<div id="35eca64d" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>two_strip_loaded <span class="op">=</span> all_cells[<span class="st">"Unnamed_17"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>thickness <span class="op">=</span> <span class="fl">10.0</span></span>
@@ -260,7 +260,7 @@ window.Quarto = {
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x ($</span><span class="er">\</span><span class="st">mu$m)"</span>)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"y ($</span><span class="er">\</span><span class="st">mu$m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2f7602b0" class="cell">
+<div id="ce76aeb0" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we construct the simulation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sim<span class="op">=</span> td.Simulation(center<span class="op">=</span> (<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), size<span class="op">=</span>(<span class="dv">2</span>,<span class="dv">1</span>, thickness<span class="op">+</span><span class="dv">2</span>), grid_spec<span class="op">=</span> td.GridSpec.auto(wavelength<span class="op">=</span><span class="fl">1.55</span>),structures<span class="op">=</span>structures, medium<span class="op">=</span> td.Medium(permittivity<span class="op">=</span><span class="fl">1.45</span><span class="op">**</span><span class="dv">2</span>), boundary_spec<span class="op">=</span>td.BoundarySpec.all_sides(td.PML()), run_time<span class="op">=</span> <span class="fl">5e-12</span>)</span>
@@ -283,7 +283,7 @@ window.Quarto = {
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>sim.plot(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b6cf039c" class="cell">
+<div id="8b3d8eec" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Lets compute the modes</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tidy3d.components.mode.simulation <span class="im">import</span> ModeSolver</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lambda_offset <span class="op">=</span> <span class="fl">.001</span> <span class="op">*</span> lambda_0</span>
@@ -292,7 +292,7 @@ window.Quarto = {
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mode_solver <span class="op">=</span> ModeSolver(simulation<span class="op">=</span>sim, plane<span class="op">=</span>td.Box(center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), size<span class="op">=</span> (<span class="fl">1.5</span>,<span class="dv">2</span>, <span class="dv">0</span>)), mode_spec<span class="op">=</span>mode_spec, freqs<span class="op">=</span> freqs)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>mode_data<span class="op">=</span>mode_solver.solve()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="22463e7d" class="cell">
+<div id="f66530ed" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> DataFrame</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mdd <span class="op">=</span> mode_data.to_dataframe()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, layout<span class="op">=</span> <span class="st">"constrained"</span>)</span>
@@ -302,7 +302,7 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fig, ax = plt.subplots()</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># abs(mode_data.Ex.isel(mode_index=0, f=5)).plot(x="x", y="y", ax=ax, cmap='magma')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bc151f39" class="cell">
+<div id="a4c13aa3" class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#We now add in nonlinearity</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ensure any length units are in um</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#chi^3 for Si3N4</span></span>
@@ -332,7 +332,7 @@ window.Quarto = {
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>sim_nl.plot(x<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax2)</span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="576eea96" class="cell">
+<div id="f9fffe19" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tidy3d.components.mode.simulation <span class="im">import</span> ModeSolver</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lambda_offset_nl <span class="op">=</span> <span class="fl">.001</span> <span class="op">*</span> lambda_0</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>freqs_nl <span class="op">=</span> np.<span class="bu">round</span>(np.divide(td.constants.C_0, np.linspace(lambda_0 <span class="op">-</span> lambda_offset_nl, lambda_0 <span class="op">+</span> lambda_offset_nl, <span class="dv">11</span>)), <span class="dv">5</span>)</span>
@@ -340,13 +340,13 @@ window.Quarto = {
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>mode_solver_nl <span class="op">=</span> ModeSolver(simulation<span class="op">=</span>sim_nl, plane<span class="op">=</span>td.Box(center<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), size<span class="op">=</span> (<span class="fl">1.5</span>,<span class="dv">2</span>, <span class="dv">0</span>)), mode_spec<span class="op">=</span>mode_spec_nl, freqs<span class="op">=</span> freqs_nl)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>mode_data_nl<span class="op">=</span>mode_solver_nl.solve()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="29e2b6e8" class="cell">
+<div id="d3ef3c01" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> DataFrame</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>mode_solver_nl.plot_field(<span class="st">"Ex"</span>, <span class="st">"abs"</span>, mode_index<span class="op">=</span><span class="dv">0</span>, f<span class="op">=</span>td.constants.C_0<span class="op">/</span>lambda_0, ax<span class="op">=</span>ax, eps_alpha<span class="op">=</span> <span class="fl">.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="93f7feba" class="cell">
+<div id="76c5193e" class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, axs<span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, layout<span class="op">=</span><span class="st">"constrained"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].grid(), axs[<span class="dv">1</span>].grid()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_eff_nl <span class="op">=</span> mode_data_nl.n_eff</span>
