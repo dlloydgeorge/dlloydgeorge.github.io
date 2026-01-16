@@ -7,6 +7,8 @@ execute:
   enabled: false
 ---
 I used GDSFactory and Tidy3D to design and simulate a complex 3D photonic ring resonator geometry used in an entangled frequency source photonic chip. I simulated a silicon nitride waveguide cross section called the Triplex Waveguide which is an asymmetric double strip waveguide. I was able to compute the single mode profile at 1.55 $\mu$m and also created the 2D ring resonator design. I ran into issues with tidy3d/GDSFactory as I was not able to extrude the waveguide cross section along the complex ring resonator geometry. There were also issues with the number of simulation credits I would require for a full ring simulation with high accuracy. 
+
+Below is an abridged version of the code I wrote:
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
