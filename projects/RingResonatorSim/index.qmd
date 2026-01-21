@@ -1,6 +1,6 @@
 ---
 title: "Photonic Ring Resonator Simulation" 
-image: "simImage.png"
+image: "simImage.jpg"
 description: "Simulated a Silicon Nitride waveguide cross section for use in a full 3D simulation of a ring resonator geometry"
 jupyter: python3
 execute:
